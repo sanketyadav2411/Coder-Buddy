@@ -1,0 +1,9 @@
+.venv
+.env
+.git
+__pycache__
+*.pyc
+generated_project
+resources
+scan_workspace/
+scan_reports/

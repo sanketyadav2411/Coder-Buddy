@@ -1,0 +1,33 @@
+# Copy this file to .env and fill in your values. NEVER commit or share .env.
+
+# Which LLM does the work: "groq" (cloud, fast) or "ollama" (local, private).
+LLM_PROVIDER=groq
+
+# --- Groq (LLM_PROVIDER=groq) ---
+GROQ_API_KEY=<YOUR_API_KEY_HERE>
+# GROQ_MODEL=openai/gpt-oss-120b
+# GROQ_REASONING_EFFORT=low
+# Free tier hits "rate limit" errors? Try a model with a bigger per-minute budget:
+# GROQ_MODEL=llama-3.3-70b-versatile
+
+# --- Local model (LLM_PROVIDER=ollama) ---
+# Use a 7B+ coder model: 3B models are too weak to plan projects or analyse code.
+#   ollama pull qwen2.5-coder:7b
+OLLAMA_MODEL=qwen2.5-coder:7b
+# Docker: use http://host.docker.internal:11434 (docker-compose.yml already does this by default)
+OLLAMA_BASE_URL=http://localhost:11434
+OLLAMA_NUM_CTX=8192
+# OLLAMA_TIMEOUT=300
+# OLLAMA_KEEP_ALIVE=30m
+
+# --- Scanner limits and speed (all optional) ---
+# SCAN_WORKERS=1          # parallel model calls; raise only on a paid Groq tier
+# SCAN_MAX_FILES=200
+# SCAN_MAX_FILE_KB=200
+# SCAN_MAX_TOTAL_MB=5
+# SCAN_CHUNK_LINES=200
+# SCAN_CHUNK_CHARS=12000
+# MAX_FIX_ROUNDS=1
+
+# Print full LangChain debug logs
+# CODER_BUDDY_DEBUG=1

@@ -1,0 +1,19 @@
+services:
+  coder-buddy:
+    build: .
+    ports:
+      - "8501:8501"
+    env_file:
+      - path: .env
+        required: false   # you can also type the key into the web page
+    environment:
+      # Reach an Ollama server running on the HOST machine from inside the container.
+      # Override in .env if Ollama runs somewhere else.
+      OLLAMA_BASE_URL: ${OLLAMA_BASE_URL:-http://host.docker.internal:11434}
+    extra_hosts:
+      # Needed on Linux; Docker Desktop (Windows/macOS) already provides this name.
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - ./generated_project:/app/generated_project
+      - ./scan_workspace:/app/scan_workspace   # uploaded code is copied here (originals are never modified)
+      - ./scan_reports:/app/scan_reports       # JSON / Markdown reports and backups of changed files
